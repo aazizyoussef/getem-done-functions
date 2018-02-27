@@ -20,7 +20,6 @@ public static HttpResponseMessage Run(HttpRequestMessage req, IQueryable<Person>
     };
     var response = req.CreateResponse(HttpStatusCode.OK, tasks);
     response.Headers.Add("Access-Control-Allow-Credentials", "true");
-   //response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:3000");
    response.Headers.Add("Access-Control-Allow-Methods", "GET, OPTIONS");
     return response;
 }
