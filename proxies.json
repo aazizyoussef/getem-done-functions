@@ -16,7 +16,7 @@
             },
             "backendUri": "https://getem-done-functions.azurewebsites.net/api/GetemDoneTasksFunction",
             "responseOverrides": {
-                "response.headers.Access-Control-Allow-Origin": "https://getem-done-ui.azurewebsites.net/"
+                "response.headers.Access-Control-Allow-Origin": "https://getem-done-ui.azurewebsites.net"
             }
         }
     }
