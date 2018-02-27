@@ -20,7 +20,7 @@ public static HttpResponseMessage Run(HttpRequestMessage req, IQueryable<Person>
     };
     var response = req.CreateResponse(HttpStatusCode.OK, tasks);
     response.Headers.Add("Access-Control-Allow-Credentials", "true");
-   response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:3000, https://accounts.google.com, https://getem-done-functions.azurewebsites.net");
+   response.Headers.Add("Access-Control-Allow-Origin", req.headers.origin);
    response.Headers.Add("Access-Control-Allow-Methods", "GET, OPTIONS");
     return response;
 }
