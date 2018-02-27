@@ -1,9 +1,6 @@
-#r "Microsoft.WindowsAzure.Storage"
-
 using System.Net;
-using Microsoft.WindowsAzure.Storage.Table;
 
-public static HttpResponseMessage Run(HttpRequestMessage req, IQueryable<Person> inTable, TraceWriter log)
+public static HttpResponseMessage Run(HttpRequestMessage req, TraceWriter log)
 {
     Task[] tasks = new Task[]{
         new Task(){
