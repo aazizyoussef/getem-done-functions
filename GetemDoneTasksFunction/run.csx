@@ -18,8 +18,11 @@ public static HttpResponseMessage Run(HttpRequestMessage req, IQueryable<Person>
             Description = "Second task"
         }
     };
-
-    return req.CreateResponse(HttpStatusCode.OK, tasks);
+    var response = req.CreateResponse(HttpStatusCode.OK, tasks);
+    response.Headers.Add("Access-Control-Allow-Credentials", "true");
+   response.Headers.Add("Access-Control-Allow-Origin", "*");
+   response.Headers.Add("Access-Control-Allow-Methods", "GET, OPTIONS");
+    return response;
 }
 
 public class Task 
