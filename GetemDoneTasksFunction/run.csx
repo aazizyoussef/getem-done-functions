@@ -1,33 +1,18 @@
 using System.Net;
 using System.Security.Claims; 
 
-public static HttpResponseMessage Run(HttpRequestMessage req, TraceWriter log)
+public static HttpResponseMessage Run(HttpRequestMessage req, IQueryable<Task> tasks, TraceWriter log)
 {
-    Task[] tasks = new Task[]{
-        new Task(){
-            Description = "First task"
-        },
-        new Task(){
-            Description = "Second task"
-        }
-    };
-
-    var claims = new List<UserClaim>();
-    foreach (Claim claim in ClaimsPrincipal.Current.Claims)
-    {
-        claims.Add(new UserClaim(){
-            Type = claim.Type,
-            Value = claim.Value,
-            Issuer = claim.Issuer,
-            ValueType = claim.ValueType
-        });
-    }
-    var response = req.CreateResponse(HttpStatusCode.OK, claims);
+    var userId = ClaimsPrincipal.Current.Claims
+                    .First(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
+    var userTasks = tasks.All(t => t.UserId == userId);
+    var response = req.CreateResponse(HttpStatusCode.OK, userTasks);
     return response;
 }
 
 public class Task 
 {
+    public string UserId { get; set; }
     public string Description { get; set; }
 }
 

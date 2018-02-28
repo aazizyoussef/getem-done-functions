@@ -11,6 +11,13 @@
       "type": "http",
       "direction": "out",
       "name": "res"
+    },
+    {
+      "type": "table",
+      "name": "tasks",
+      "tableName": "Tasks",
+      "connection": "GetemDoneConnection",
+      "direction": "in"
     }
   ],
   "disabled": false
